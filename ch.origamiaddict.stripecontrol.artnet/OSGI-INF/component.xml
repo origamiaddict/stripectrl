@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" immediate="false" name="ch.origamiaddict.stripecontrol.artnet">
+   <implementation class="ch.origamiaddict.stripecontrol.artnet.internal.ArtNetServiceImpl"/>
+   <service>
+      <provide interface="ch.origamiaddict.stripecontrol.artnet.service.IArtNetService"/>
+      <provide interface="org.osgi.service.event.EventHandler"/>
+   </service>
+   <property name="event.topics" value="ch/origamiaddict/stripecontrol/events/dmxdriver/*" />
+   <reference bind="bindLogService" cardinality="0..1" interface="org.osgi.service.log.LogService" name="LogService" policy="static" unbind="unbindLogService"/>
+</scr:component>
