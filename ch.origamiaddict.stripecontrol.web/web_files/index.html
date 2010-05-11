@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>StripeControl</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" media="screen" href="javascripts/jquery.jqtouch/jqtouch.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="javascripts/jquery.jqtouch/themes/apple/theme.css" />
+
+<link type="text/css" rel="stylesheet" media="screen" href="css/custom.css" />
+	
+<script type="text/javascript" src="javascripts/jquery-1.4.2.min.js" type="application/x-javascript" charset="utf-8"></script>
+<!--[if IE]><script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/tags/m3/excanvas.compiled.js"></script><![endif]-->
+<script type="text/javascript" src="javascripts/jquery.farbtastic/farbtastic.js" type="application/x-javascript" charset="utf-8"></script>
+<script type="text/javascript" src="javascripts/jquery.jqtouch/jqtouch.js" type="application/x-javascript" charset="utf-8"></script>
+<script type="text/javascript" src="javascripts/jquery.throttle/jquery.ba-throttle-debounce.js" charset="utf-8" ></script>
+<script type="text/javascript" src="javascripts/jquery.throbber-0.1.2/jquery.throbber.js" charset="utf-8" ></script>	
+<script type="text/javascript" src="javascripts/firebug-lite-compressed.js" language="javascript"></script>
+<script type="text/javascript" src="javascripts/sc.settings.js" charset="utf-8" ></script>
+<script type="text/javascript" src="javascripts/sc.mood.js" charset="utf-8" ></script>
+<script type="text/javascript" src="javascripts/sc.control.js" charset="utf-8" ></script>
+<!--//http://plugins.jquery.com/project/ui-throbber-->
+
+<style type="text/css" media="screen">
+.colorpicker { /*float: left;*/
+	margin: 1em;
+}
+</style>
+
+</head>
+
+<body>
+<!-- ******************** -->	
+<!-- ****HOME SCREEN **** -->
+<!-- ******************** -->	
+<div id="home" class="current">
+	<div class="toolbar"><h1>Color Fader</h1><a class="button flip" href="#settings">Settings</a></div>
+	<h2>General</h2>	
+	<ul class="rounded">
+		<li>Blackout <span class="toggle"><input type="checkbox" id="blackout" /></span></li>
+		<li>Current Color (tap)<ul class="individual" id="currentColor"></ul></li>
+	</ul>
+	<h2>Modules</h2>
+	<ul class="rounded" id="modulesList">		
+		<li class="arrow"><a href="#colorpicker">Color Picker</a></li>
+		<li class="arrow"><a href="#fader">Fader</a></li>
+		<li class="arrow"><a href="#clap">Clap Control</a></li>
+		<li class="arrow"><a href="#musicfx">Music FX</a></li>
+	</ul>
+
+	<ul class="individual">
+		<li><a href="#info" class="flip">Info</a></li>
+		<li><a href="#about" class="slideup" >About</a></li>
+	</ul>
+</div>
+
+
+<!-- ********************* -->	
+<!-- ****MOOD SCREEN  **** -->
+<!-- ********************* -->
+<div id="mood">
+	<div class="toolbar">
+		<h1>Moods</h1>
+		<a class="button leftButton flip" href="#home">Back</a>
+		<a id="editMoods" class="button" href="#">Edit</a>
+	</div>	
+	<ul class="edit rounded">		
+		<li>Global <span class="toggle"><input type="checkbox" class="allStripes" /></span></li>
+		<li><select class="stripeList"></select></li>
+	</ul>
+	<ul class="individual" id="moodList"></ul>
+</div>	
+
+<!-- ******************************************* -->	
+<!-- ****MOOD EDIT SCREEN (AJAX CONTAINER)  **** -->
+<!-- ******************************************* -->
+<div id="moodEditScreen">
+	<div class="toolbar">
+		<h1>Edit Mood</h1>
+  	<a class="button leftButton back" href="#">Cancel</a>
+	</div>
+  <div class="colorpicker"><div id="colormoodwheel"></div></div>
+  <ul class="edit rounded">
+  	<li><input type="text" placeholder="Mood Name" name="Mood Name" id="moodEditName" /></li>  	
+  	<li><a class="whiteButton submit" href="#" id="saveMood">Save</a></li>
+  </ul>
+</div>
+
+<!-- ********************* -->	
+<!-- ****WHEEL SCREEN **** -->
+<!-- ********************* -->	
+<div id="colorpicker">
+	<div class="toolbar"><h1>Color Picker</h1><a class="button back" href="#">Back</a></div>
+	<h2>Stripe</h2>
+	<div class="colorpicker">
+		<div id="colorwheel"></div>
+	</div>	
+	<ul class="edit rounded">
+		<li>Global <span class="toggle"><input type="checkbox" class="allStripes" /></span></li>
+		<li><select class="stripeList"></select></li>		
+	</ul>
+</div>
+
+<!-- *********************** -->	
+<!-- ****SETTINGS SCREEN**** -->
+<!-- *********************** -->	
+<div id="settings">
+	<div class="toolbar"><h1>Settings</h1><a class="button back" href="#">Back</a></div>
+	<ul class="rounded">
+		<li class="arrow"><a href="#settings_stripes">Stripes</a><small class="counter" id="stripecnt"></small></li>
+		<li class="arrow"><a href="#settings_fader">Fader</a></li>
+		<li class="arrow"><a href="#log">Log</a></li>
+	</ul>
+	<ul class="rounded">
+		<li id="def_module"><h2>Default module</h2></li>		
+	</ul>
+</div>
+
+<!-- *************************************** -->	
+<!-- ****STRIPE OVERVIEW SETTINGS SCREEN**** -->
+<!-- *************************************** -->	
+<div id="settings_stripes">
+	<div class="toolbar"><h1>Stripes</h1><a class="button back" href="#">Back</a> <a href="#add" class="button">Add</a></div>
+
+	<ul class="edit rounded">
+<!--		<li><select class="stripeList" id="settingsStripeList"></select></li>-->
+	</ul>	
+	<ul class="edit rounded"><h2>Name</h2>
+		<li><input type="text" name="name" placeholder="Name" id="stripeName" /></li>
+		<h2>Channels</h2>
+		<li id="channelList"></li>
+	</ul>
+	<ul class="individual">
+		<li><div class="blueButton" id="addChannel">Add Channel</div></li>
+	</ul>
+</div>
+
+<!-- *********************************** -->	
+<!-- ****STRIPE EDIT SETTINGS SCREEN**** -->
+<!-- *********************************** -->	
+<div id="edit_stripe">
+	<div class="toolbar"><h1>Edit Stripe</h1><a class="button cancel" href="#">Cancel</a></div>
+	<h2>Stripe</h2>
+	<form method="post" id="edit_stripe_form">		
+		<input type="text" paceholder="Stripe name" name="stripeName" id="stripeName" />
+		<h2>Channels</h2>
+		<ul class="rounded"></ul>
+		<a href="#" class="grayButton">Add Channel</a> <input type="submit" class="submit" name="action" value="Save" />
+	</form>
+</div>
+
+<!-- ******************** -->	
+<!-- ****ABOUT SCREEN**** -->
+<!-- ******************** -->	
+<div id="about" class="selectable">
+	<p><strong>Stripe Control</strong><br />Version 0.1 <br />
+	<p><em>Control you LED-stripe<br />with your mobile device.</em></p>
+	<p><br />
+	<br />
+	<a href="#" class="grayButton goback">Close</a></p>
+</div>
+
+<!-- ******************** -->	
+<!-- ****INFO SCREEN **** -->
+<!-- ******************** -->	
+<div id="info">
+	<div class="toolbar"><h1>Info</h1><a class="button back" href="#">Back</a></div>
+	<ul class="rounded">
+		<li><p>ArtNet Status:</p><span id="artNetStatus"></span></li>
+	</ul>
+</div>
+
+<!-- ****************** -->	
+<!-- ****LOG SCREEN**** -->
+<!-- ****************** -->	
+<div id="log">
+	<div class="toolbar"><h1>Log</h1><a class="button back" href="#">Back</a></div>
+	<h2>Not implemented yet.</h2>
+</div>
+
+</body>
+</html>

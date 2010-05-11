@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+  <extension
+           id="testServlet"
+           point="org.eclipse.equinox.http.registry.servlets">
+        <servlet
+              alias="/hello"
+              class="ch.origamiaddict.stripecontrol.web.test.internal.TestServlet">
+        </servlet>
+     </extension>
+<extension
+           id="ajaxServlet"
+           point="org.eclipse.equinox.http.registry.servlets">
+        <servlet
+              alias="/ajax"
+              class="ch.origamiaddict.stripecontrol.web.test.internal.AjaxServlet">
+        </servlet>
+     </extension>    
+<extension
+           id="colorPickerAjax"
+           point="org.eclipse.equinox.http.registry.servlets">
+        <servlet
+              alias="/colorpickerajaxtest"
+              class="ch.origamiaddict.stripecontrol.web.test.internal.AjaxFadeServletTest">
+        </servlet>
+     </extension>       
+  <extension point="org.eclipse.equinox.http.registry.resources">
+    <resource
+      alias="/static"
+      base-name="/web_files"/>
+  </extension>
+</plugin>
+
+

@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OSGi_WEB_TEST Plug-in
+Bundle-SymbolicName: ch.origamiaddict.stripecontrol.web.test.servlet;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: javax.servlet,
+ org.eclipse.equinox.http.registry,
+ ch.origamiaddict.stripecontrol.configuration
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: ch.origamiaddict.stripecontrol.artnet.service,
+ ch.origamiaddict.stripecontrol.config.mood,
+ ch.origamiaddict.stripecontrol.config.service,
+ org.osgi.framework,
+ org.osgi.service.cm,
+ org.osgi.service.component;version="1.0.0",
+ org.osgi.service.event;version="1.2.0"
+Service-Component: OSGI-INF/component.xml
+Bundle-ClassPath: .
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="ch.origamiaddict.stripecontrol.web.test">
+   <implementation class="ch.origamiaddict.stripecontrol.web.test.internal.AjaxFadeServletTest"/>            
+   <reference bind="bindEventAdmin" cardinality="1..n" interface="org.osgi.service.event.EventAdmin" name="eventAdmin" unbind="unbindEventAdmin"/>
+   <reference bind="bindArtNet" cardinality="1..1" interface="ch.origamiaddict.stripecontrol.artnet.service.IArtNetService" name="IArtNetService" policy="static" unbind="unbindArtNet"/>
+   <reference bind="bindConfig" cardinality="1..1" interface="ch.origamiaddict.stripecontrol.config.service.IStripeControlConfig" name="IStripeControlConfig" policy="dynamic" unbind="unbindConfig"/>
+   
+   
+    
+</scr:component>
