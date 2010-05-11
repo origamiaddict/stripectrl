@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="ch.origamiaddict.stripecontrol.fadermanager">
+   <implementation class="ch.origamiaddict.stripecontrol.fadermanager.FaderManagerImpl"/>   
+   <service>
+      <provide interface="ch.origamiaddict.stripecontrol.fadermanager.service.IFaderManager"/>
+   </service>         
+   <reference name="eventAdmin"
+              interface="org.osgi.service.event.EventAdmin"
+              bind="bindEventAdmin"
+              unbind="unbindEventAdmin" />
+   <reference bind="bindLogService" 
+              cardinality="0..1" 
+              interface="org.osgi.service.log.LogService" 
+              name="LogService" 
+              policy="dynamic" 
+              unbind="unbindLogService"/>
+</scr:component>
