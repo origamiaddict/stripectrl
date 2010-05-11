@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ch.origamiaddict.stripecontrol.console">
+   <implementation class="ch.origamiaddict.stripecontrol.console.internal.StripeConsole"/>
+   <service>
+      <provide interface="org.eclipse.osgi.framework.console.CommandProvider"/>
+   </service>
+   <reference bind="bindArtNetService" 
+              cardinality="1..1" 
+              interface="ch.origamiaddict.stripecontrol.artnet.service.IArtNetService" 
+              name="IArtNetService" 
+              policy="static" 
+              unbind="unbindArtNetService"/>   
+   <reference name="eventAdmin"
+              interface="org.osgi.service.event.EventAdmin"
+              bind="bindEventAdmin"
+              unbind="unbindEventAdmin" />
+   <reference bind="bindFaderManager" 
+              cardinality="0..1" 
+              interface="ch.origamiaddict.stripecontrol.fadermanager.service.IFaderManager" 
+              name="IFaderManager" 
+              policy="static"  
+              unbind="unbindFaderManager"/>
+   <reference bind="bindConfig" 
+   			cardinality="1..1" 
+   			interface="ch.origamiaddict.stripecontrol.config.service.IStripeControlConfig" 
+   			name="IStripeControlConfig"
+   			 policy="dynamic" 
+   			 unbind="unbindConfig"/>
+</scr:component>
