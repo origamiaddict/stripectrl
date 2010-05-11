@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OSGi_STRIPECONTROL_CONFIGURATION
+Bundle-SymbolicName: ch.origamiaddict.stripecontrol.configuration;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.osgi.framework,
+ org.osgi.service.component;version="1.1.0"
+Service-Component: OSGI-INF/component.xml
+Bundle-ActivationPolicy: lazy
+Export-Package: ch.origamiaddict.stripecontrol.config.mood,
+ ch.origamiaddict.stripecontrol.config.service;uses:="ch.origamiaddict.stripecontrol.stripe",
+ ch.origamiaddict.stripecontrol.stripe,
+ ch.origamiaddict.stripecontrol.stripe.channel

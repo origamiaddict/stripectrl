@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" modified="modified" name="ch.origamiaddict.stripecontrol.configuration">
+   <implementation class="ch.origamiaddict.stripecontrol.config.StripeControlConfig"/>
+   <service>
+      <provide interface="ch.origamiaddict.stripecontrol.config.service.IStripeControlConfig"/>
+   </service>
+   
+   <property name="hello" type="String" value="world"/>
+   
+   <properties entry="OSGI-INF/run.properties"/>
+</scr:component>
